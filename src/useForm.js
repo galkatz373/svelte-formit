@@ -35,7 +35,6 @@ export const useForm = ({ mode } = {} || undefined) => {
       fields.update((n) => ({ ...n, [name]: node.options }));
     } else {
       fields.update((n) => ({ ...n, [name]: node }));
-      console.log(get(fields));
     }
 
     fields.update((n) => {
