@@ -5,6 +5,7 @@ import {
   flatten,
   unflatten,
   isSelectMulti,
+  findInputOrSelect,
 } from "./util";
 import { tick } from "svelte";
 
@@ -20,8 +21,10 @@ export const useForm = ({ mode } = {} || undefined) => {
   let validations = writable({});
 
   const register = (node, validate) => {
+    let initialName = node.name || node.getAttribute("name");
+    node = findInputOrSelect(node);
+    node.name = initialName;
     const { name } = node;
-
     if (validate) {
       validations.update((n) => ({ ...n, [name]: { validate, ref: node } }));
     }
@@ -157,6 +160,29 @@ export const useForm = ({ mode } = {} || undefined) => {
     };
   };
 
+  const unregister = (name) => {
+    validations.update((n) => {
+      let { [name]: value, ...rest } = n;
+      return rest;
+    });
+    fields.update((n) => {
+      let { [name]: value, ...rest } = n;
+      return rest;
+    });
+    errors.update((n) => {
+      let { [name]: value, ...rest } = n;
+      return rest;
+    });
+    dirty.update((n) => {
+      let { [name]: value, ...rest } = n;
+      return rest;
+    });
+    touched.update((n) => {
+      let { [name]: value, ...rest } = n;
+      return rest;
+    });
+  };
+
   const watch = (name) => {
     if (get(fields)) return getNodeValue(get(fields)[name]);
   };
@@ -271,6 +297,7 @@ export const useForm = ({ mode } = {} || undefined) => {
     triggerValidation,
     isValid,
     errors,
+    unregister,
     reset,
   };
 };

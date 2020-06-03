@@ -77,3 +77,14 @@ export function unflatten(table) {
 
   return result[""];
 }
+
+export const findInputOrSelect = (ref) => {
+  if (ref.tagName === "INPUT" || ref.tagName === "SELECT") {
+    return ref;
+  }
+  for (let child of ref.children) {
+    return findInputOrSelect(child);
+  }
+};
+
+export const getNodeName = (ref) => ref.name || ref.getAttribute("name");
