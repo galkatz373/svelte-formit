@@ -9,7 +9,6 @@ export const getNodeValue = (ref) => {
   if (isCheckbox(ref)) return ref.checked;
   if (isSelectMulti(ref)) {
     let selected = [];
-    console.log(ref.length);
     for (let i = 0; i < ref.length; i++) {
       if (ref.options[i].selected) selected.push(ref.options[i].value);
     }
