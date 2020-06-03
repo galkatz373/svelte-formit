@@ -3,10 +3,11 @@
   import { useFormContext } from "./useFormContext";
   const { register, unregister } = useFormContext();
   export let name;
+  export let validate = {};
   let component;
 
   onMount(() => {
-    register(component);
+    register(component, validate);
   });
 
   onDestroy(() => {
@@ -14,7 +15,6 @@
   });
 </script>
 
-<div {name} bind:this={component}>
-  <input />
-  <div />
-</div>
+<span {name} bind:this={component}>
+  <slot />
+</span>

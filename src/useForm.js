@@ -134,28 +134,7 @@ export const useForm = ({ mode } = {} || undefined) => {
 
     return {
       destroy() {
-        if (validate) {
-          validations.update((n) => {
-            let { [name]: value, ...rest } = n;
-            return rest;
-          });
-        }
-        fields.update((n) => {
-          let { [name]: value, ...rest } = n;
-          return rest;
-        });
-        errors.update((n) => {
-          let { [name]: value, ...rest } = n;
-          return rest;
-        });
-        dirty.update((n) => {
-          let { [name]: value, ...rest } = n;
-          return rest;
-        });
-        touched.update((n) => {
-          let { [name]: value, ...rest } = n;
-          return rest;
-        });
+        unregister(name);
       },
     };
   };
