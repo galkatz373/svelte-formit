@@ -14,12 +14,16 @@ export const getNodeValue = (ref) => {
     }
     return selected;
   }
+  if (isFileInput(ref)) {
+    return ref.files;
+  }
   return ref.value;
 };
 
 export const isRadioButton = (ref) => ref.type === "radio";
 export const isCheckbox = (ref) => ref.type === "checkbox";
 export const isSelectMulti = (ref) => ref.type === "select-multiple";
+export const isFileInput = (ref) => ref.type === "file";
 
 export const flatten = (obj) => {
   const flattened = {};

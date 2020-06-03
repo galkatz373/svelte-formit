@@ -20,7 +20,6 @@ export const useForm = ({ mode } = {} || undefined) => {
   let validations = writable({});
 
   const register = (node, validate) => {
-    console.log(node.type);
     const { name } = node;
 
     if (validate) {
@@ -36,6 +35,7 @@ export const useForm = ({ mode } = {} || undefined) => {
       fields.update((n) => ({ ...n, [name]: node.options }));
     } else {
       fields.update((n) => ({ ...n, [name]: node }));
+      console.log(get(fields));
     }
 
     fields.update((n) => {
