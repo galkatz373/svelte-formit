@@ -191,8 +191,6 @@ export const useForm = ({ mode } = {} || undefined) => {
         get(fields)[fieldName].type === "checkbox"
           ? (get(fields)[fieldName].checked = value)
           : (get(fields)[fieldName].value = value);
-      } else {
-        console.error("The field you are trying to change doesn't exist");
       }
 
       return n;
@@ -210,16 +208,10 @@ export const useForm = ({ mode } = {} || undefined) => {
     return unflatten(values);
   };
 
-  const reset = async (values) => {
+  const reset = (values) => {
     let flattenValues = flatten(values);
-    await tick();
-    for (let ref of Object.values(get(fields))) {
-      fields.update((n) => {
-        ref.type === "checkbox"
-          ? (ref.checked = flattenValues[ref.name] || false)
-          : (ref.value = flattenValues[ref.name] || "");
-        return n;
-      });
+    for (let [key, value] of Object.entries(flattenValues)) {
+      setValue(key, value);
     }
   };
 
@@ -271,7 +263,6 @@ export const useForm = ({ mode } = {} || undefined) => {
     getValues,
     touched,
     dirty,
-    fields,
     setValue,
     watch,
     handleSubmit,
