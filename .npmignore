@@ -2,4 +2,7 @@
 .npmignore
 rollup.config.js
 README.md
+babel.config.js
+jest.config.js
+jsconfig.json
 src/
