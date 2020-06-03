@@ -4,14 +4,23 @@ export const getNodeValue = (ref) => {
     for (let item of ref) {
       if (item.checked) value = item.value;
     }
-    // console.log(value)
     return value;
   }
-  if (ref.type === "checkbox") return ref.checked;
+  if (isCheckbox(ref)) return ref.checked;
+  if (isSelectMulti(ref)) {
+    let selected = [];
+    console.log(ref.length);
+    for (let i = 0; i < ref.length; i++) {
+      if (ref.options[i].selected) selected.push(ref.options[i].value);
+    }
+    return selected;
+  }
   return ref.value;
 };
 
 export const isRadioButton = (ref) => ref.type === "radio";
+export const isCheckbox = (ref) => ref.type === "checkbox";
+export const isSelectMulti = (ref) => ref.type === "select-multiple";
 
 export const flatten = (obj) => {
   const flattened = {};
@@ -26,24 +35,6 @@ export const flatten = (obj) => {
 
   return flattened;
 };
-
-// export const unflatten = (obj) => {
-//   var result = {};
-//   for (var i in obj) {
-//     var keys = i.split(".");
-//     keys.reduce(function (r, e, j) {
-//       return (
-//         r[e] ||
-//         (r[e] = isNaN(Number(keys[j + 1]))
-//           ? keys.length - 1 == j
-//             ? obj[i]
-//             : {}
-//           : [])
-//       );
-//     }, result);
-//   }
-//   return result;
-// };
 
 export function unflatten(table) {
   var result = {};
