@@ -3,10 +3,6 @@
   import Content from "../../../components/Content.svelte";
 </script>
 
-<style lang="scss">
-
-</style>
-
 <Title title={'Motivation'} />
 
 <Content>
