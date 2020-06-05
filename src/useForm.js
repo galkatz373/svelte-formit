@@ -3,7 +3,7 @@ import { isRadioButton, flatten, unflatten, isSelectMulti, findInputOrSelect, is
 
 export const key = {}
 
-export const useForm = ({ mode } = {} || undefined) => {
+export const useForm = ({ modes } = {} || undefined) => {
   let fields = writable({})
   let errors = writable({})
   let isSubmitting = writable(false)
@@ -57,7 +57,13 @@ export const useForm = ({ mode } = {} || undefined) => {
         ...n,
         [name]: n[name] ? [...n[name], node] : [node],
       }))
-      values.update((n) => node.checked && { ...n, [name]: node.value })
+      values.update((n) => {
+        n[name] = ""
+        if (node.checked) {
+          n[name] = node.value
+        }
+        return n
+      })
     } else if (isCheckbox(node)) {
       fields.update((n) => ({ ...n, [name]: node }))
       values.update((n) => ({ ...n, [name]: node.checked }))
@@ -77,7 +83,7 @@ export const useForm = ({ mode } = {} || undefined) => {
 
     node.addEventListener("blur", (e) => {
       let value = get(values)[name]
-      if (mode && validate && mode === "onBlur") {
+      if (modes && validate && modes.includes("onBlur")) {
         for (let func of Object.values(validate)) {
           if (func(value)) {
             errors.update((n) => ({
@@ -127,7 +133,13 @@ export const useForm = ({ mode } = {} || undefined) => {
         ...n,
         [name]: n[name] ? [...n[name], node] : [node],
       }))
-      values.update((n) => node.checked && { ...n, [name]: node.value })
+      values.update((n) => {
+        n[name] = ""
+        if (node.checked) {
+          n[name] = node.value
+        }
+        return n
+      })
     } else if (isCheckbox(node)) {
       fields.update((n) => ({ ...n, [name]: node }))
       values.update((n) => ({ ...n, [name]: node.checked }))
@@ -151,7 +163,7 @@ export const useForm = ({ mode } = {} || undefined) => {
     node.addEventListener("input", (e) => {
       values.update((n) => ({ ...n, [name]: e.target.value }))
       let value = get(values)[name]
-      if (mode && validate && mode === "onChange") {
+      if (modes && validate && modes.includes("onChange")) {
         for (let func of Object.values(validate)) {
           if (func(value)) {
             errors.update((n) => ({
@@ -175,7 +187,7 @@ export const useForm = ({ mode } = {} || undefined) => {
     node.addEventListener("change", (e) => {
       fields.update((n) => ({ ...n, [name]: node }))
       if (isRadioButton(node)) {
-        values.update((n) => node.checked && { ...n, [name]: node.value })
+        node.checked && values.update((n) => ({ ...n, [name]: node.value }))
       } else if (isCheckbox(node)) {
         console.log(node)
         values.update((n) => ({ ...n, [name]: node.checked }))
@@ -199,7 +211,7 @@ export const useForm = ({ mode } = {} || undefined) => {
         values.update((n) => ({ ...n, [name]: node.value }))
 
         let value = get(values)[name]
-        if (mode && validate && mode === "onChange") {
+        if (modes && validate && modes.includes("onChange")) {
           for (let func of Object.values(validate)) {
             if (func(value)) {
               errors.update((n) => ({
@@ -223,7 +235,7 @@ export const useForm = ({ mode } = {} || undefined) => {
 
     node.addEventListener("blur", (e) => {
       let value = get(values)[name]
-      if (mode && validate && mode === "onBlur") {
+      if (modes && validate && modes.includes("onBlur")) {
         for (let func of Object.values(validate)) {
           if (func(value)) {
             errors.update((n) => ({
