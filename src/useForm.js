@@ -155,7 +155,6 @@ export const useForm = ({ modes } = {} || undefined) => {
     } else {
       fields.update((n) => ({ ...n, [name]: node }))
       values.update((n) => {
-        console.log({ ...n, [name]: node.value })
         return { ...n, [name]: node.value }
       })
     }
@@ -189,7 +188,6 @@ export const useForm = ({ modes } = {} || undefined) => {
       if (isRadioButton(node)) {
         node.checked && values.update((n) => ({ ...n, [name]: node.value }))
       } else if (isCheckbox(node)) {
-        console.log(node)
         values.update((n) => ({ ...n, [name]: node.checked }))
       } else if (isFileInput(node)) {
         values.update((n) => ({ ...n, [name]: node.files }))
@@ -274,8 +272,16 @@ export const useForm = ({ modes } = {} || undefined) => {
     }
   }
 
-  const watch = (name) => {
-    if (get(fields)) return get(values)[name]
+  const watch = {
+    subscribe(run) {
+      return derived(
+        values,
+        (values) =>
+          function watch(name) {
+            return values[name]
+          }
+      ).subscribe(run)
+    },
   }
 
   const triggerValidation = (name) => {
@@ -307,7 +313,6 @@ export const useForm = ({ modes } = {} || undefined) => {
       if (get(fields)[fieldName][0] && isRadioButton(get(fields)[fieldName][0])) {
         fields.update((n) => {
           for (let option of n[fieldName]) {
-            console.log(option)
             if (option.value == value) {
               option.checked = true
             }
@@ -385,8 +390,6 @@ export const useForm = ({ modes } = {} || undefined) => {
     isValid,
     errors,
     custom,
-    fields,
-    values,
     reset,
   }
 }
