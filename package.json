@@ -1,9 +1,10 @@
 {
   "name": "svelte-formit",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
+  "url": "https://github.com/galkatz373/svelte-formit",
   "license": "MIT",
   "scripts": {
     "build": "rollup -c",
