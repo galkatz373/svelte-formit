@@ -18,6 +18,7 @@
     display: flex;
     z-index: 1;
     border: 1px solid lightgray;
+
     .title {
       color: #1c1e21;
       &:hover {
@@ -39,5 +40,5 @@
 
 <div class="container">
   <a href={$url('/')} class="title">Svelte-Formit</a>
-  <a href={$url('/docs/introduction/installation')} class="link">Docs</a>
+  <a href={$url('/docs/introduction/getting-started')} class="link">Docs</a>
 </div>

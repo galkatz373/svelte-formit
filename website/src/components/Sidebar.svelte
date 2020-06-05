@@ -14,9 +14,19 @@
   .link {
     padding: 0.2rem 0.8rem;
     outline: none;
+    text-align: center;
     &:hover {
       background-color: #ebedf0;
       text-decoration: none;
+    }
+
+    @media (max-width: 1000px) {
+      font-size: 0.7rem;
+      padding: 0.2rem 0;
+    }
+    @media (max-width: 600px) {
+      font-size: 0.5rem;
+      padding: 0.2rem 0;
     }
   }
 </style>
@@ -27,12 +37,6 @@
     style={`color: ${$isActive('/docs/introduction/motivation') ? '#3578e5' : '#606770'} `}
     href={$url('/docs/introduction/motivation')}>
     Motivation
-  </a>
-  <a
-    class="link"
-    style={`color: ${$isActive('/docs/introduction/installation') ? '#3578e5' : '#606770'} `}
-    href={$url('/docs/introduction/installation')}>
-    Installation
   </a>
   <a
     class="link"

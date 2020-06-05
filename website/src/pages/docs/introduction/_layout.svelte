@@ -4,7 +4,7 @@
 
 <div style="display: flex">
   <Sidebar />
-  <div style="padding: 2rem 1rem">
+  <div style="padding: 1rem 1rem">
     <slot />
   </div>
 </div>
