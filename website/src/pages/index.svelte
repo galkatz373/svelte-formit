@@ -59,8 +59,6 @@
   }
 </style>
 
-<!-- Place this tag where you want the button to render. -->
-
 <div class="banner">
   <div class="title line">Svelte-Formit</div>
   <div class="line" style="font-size: 1.2rem">
