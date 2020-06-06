@@ -1,10 +1,16 @@
 <script>
-  import Sidebar from "../../../components/Sidebar.svelte";
+  import Menu from "../../../components/Menu.svelte";
 </script>
 
 <div style="display: flex">
-  <Sidebar />
-  <div style="padding: 1rem 1rem">
+  {#if !/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)}
+    <Menu />
+  {/if}
+
+  <div style="padding: 1rem; width: 100%">
+    {#if /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)}
+      <Menu isMobile />
+    {/if}
     <slot />
   </div>
 </div>

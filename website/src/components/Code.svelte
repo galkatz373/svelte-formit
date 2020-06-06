@@ -1,5 +1,7 @@
 <style lang="scss">
   .code {
+    display: flex;
+    width: fit-content;
     text-align: center;
     border-radius: 6px;
     padding: 1rem;
@@ -8,11 +10,9 @@
     margin-top: 1rem;
 
     @media (max-width: 1000px) {
-      font-size: 0.7rem;
       padding: 0.5rem;
     }
     @media (max-width: 600px) {
-      font-size: 0.5rem;
       padding: 0.5rem;
     }
   }

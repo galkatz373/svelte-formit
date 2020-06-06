@@ -1,5 +1,6 @@
 <script>
   import { url, isActive } from "@sveltech/routify";
+  export let isMobile;
 </script>
 
 <style lang="scss">
@@ -11,6 +12,10 @@
     flex-direction: column;
     border: 0.3px solid lightgray;
   }
+
+  .mobile {
+    width: 100%;
+  }
   .link {
     padding: 0.2rem 0.8rem;
     outline: none;
@@ -21,17 +26,15 @@
     }
 
     @media (max-width: 1000px) {
-      font-size: 0.7rem;
       padding: 0.2rem 0;
     }
     @media (max-width: 600px) {
-      font-size: 0.5rem;
       padding: 0.2rem 0;
     }
   }
 </style>
 
-<nav class="container">
+<nav class="container" class:mobile={isMobile}>
   <a
     class="link"
     style={`color: ${$isActive('/docs/introduction/motivation') ? '#3578e5' : '#606770'} `}

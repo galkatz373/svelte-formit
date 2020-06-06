@@ -42,7 +42,6 @@ export const useForm = ({ modes } = {} || undefined) => {
 
   const custom = (node, validate) => {
     let initialName = node.name || node.getAttribute("name")
-    node = findInputOrSelect(node)
     node.name = initialName
 
     const { name } = node
@@ -52,56 +51,9 @@ export const useForm = ({ modes } = {} || undefined) => {
       validations.update((n) => ({ ...n, [name]: { validate, ref: node } }))
     }
 
-    if (isRadioButton(node)) {
-      fields.update((n) => ({
-        ...n,
-        [name]: n[name] ? [...n[name], node] : [node],
-      }))
-      values.update((n) => {
-        n[name] = ""
-        if (node.checked) {
-          n[name] = node.value
-        }
-        return n
-      })
-    } else if (isCheckbox(node)) {
-      fields.update((n) => ({ ...n, [name]: node }))
-      values.update((n) => ({ ...n, [name]: node.checked }))
-    } else if (isSelectMulti(node)) {
-      fields.update((n) => ({ ...n, [name]: node.options }))
-      let selected = []
-      for (let option of node.options) {
-        if (option.selected) {
-          selected.push(option.value)
-        }
-      }
-      values.update((n) => ({ ...n, [name]: selected }))
-    } else {
-      fields.update((n) => ({ ...n, [name]: node }))
-      values.update((n) => ({ ...n, [name]: node.value }))
-    }
+    fields.update((n) => ({ ...n, [name]: node }))
 
     node.addEventListener("blur", (e) => {
-      let value = get(values)[name]
-      if (modes && validate && modes.includes("onBlur")) {
-        for (let func of Object.values(validate)) {
-          if (func(value)) {
-            errors.update((n) => ({
-              ...n,
-              [name]: {
-                message: func(value),
-                ref: e.target,
-              },
-            }))
-            break
-          } else {
-            errors.update((n) => {
-              let { [name]: value, ...rest } = n
-              return rest
-            })
-          }
-        }
-      }
       touched.update((n) => ({
         ...n,
         [name]: e.target,
