@@ -285,7 +285,17 @@ export const useForm = ({ modes } = {} || undefined) => {
     values.update((n) => ({ ...n, [fieldName]: value }))
   }
 
-  const getValues = () => unflatten(get(values))
+  const getValues = {
+    subscribe(run) {
+      return derived(
+        values,
+        (values) =>
+          function watch() {
+            return unflatten(values)
+          }
+      ).subscribe(run)
+    },
+  }
 
   const reset = (values) => {
     let flattenValues = flatten(values)

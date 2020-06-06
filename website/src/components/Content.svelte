@@ -1,3 +1,7 @@
+<script>
+  export let hasMargin;
+</script>
+
 <style lang="scss">
   .container {
     color: rgb(56, 54, 54);
@@ -10,8 +14,11 @@
       width: 100%;
     }
   }
+  .margin {
+    margin-top: 3rem;
+  }
 </style>
 
-<div class="container">
+<div class="container" class:margin={hasMargin}>
   <slot />
 </div>
