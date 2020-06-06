@@ -5,10 +5,11 @@
     "dev": "run-p routify rollup",
     "dev-dynamic": "cross-env BUNDLING=dynamic npm run dev",
     "routify": "routify -D",
-    "build": "routify -b my-server && rollup -c",
+    "build": "npm run routify -- -b && rollup -c",
     "serve": "spassr --serve-spa --serve-ssr",
     "export": "routify export",
     "build:docker": "npm run build && ./scripts/docker/docker-build.sh",
+    "deploy:now:prod": "cd scripts/now && npm run deploy:prod",
     "deploy:now": "cd scripts/now && npm run deploy",
     "deploy:netlify": "cd scripts/netlify && npm run deploy",
     "rollup": "rollup -cw"
