@@ -1,11 +1,13 @@
 {
   "name": "svelte-formit",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "url": "https://github.com/galkatz373/svelte-formit",
   "license": "MIT",
+  "repository": "https://github.com/galkatz373/svelte-formit",
+  "homepage": "https://svelte-formit.now.sh/",
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "npm run build",

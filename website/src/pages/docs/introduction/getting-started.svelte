@@ -2,6 +2,7 @@
   import Title from "../../../components/Title.svelte";
   import Code from "../../../components/Code.svelte";
   import Content from "../../../components/Content.svelte";
+  import Prism from "svelte-prism";
 </script>
 
 <style lang="scss">
@@ -36,7 +37,7 @@
 <Content>
   <h3>Basic example:</h3>
 </Content>
-
+<Prism>{`npm install svelte-formit`}</Prism>
 <iframe
   src="https://codesandbox.io/embed/basic-x7fpe?fontsize=14&hidenavigation=1&theme=dark"
   style="width:100%;margin-top:1rem; height:500px; border:0; border-radius: 4px;
