@@ -1,5 +1,5 @@
 <script>
-  export let hasMargin;
+  export let hasMargin = false;
 </script>
 
 <style lang="scss">
@@ -11,7 +11,7 @@
       width: 90%;
     }
     @media (max-width: 600px) {
-      width: 100%;
+      width: 90%;
     }
   }
   .margin {

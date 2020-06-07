@@ -2,6 +2,7 @@
   import {
     basic,
     validation,
+    errorMessage,
   } from "../../../codes/introduction/getting-started";
 
   import Title from "../../../components/Title.svelte";
@@ -40,7 +41,7 @@
   unique.
 </Content>
 <Content>
-  <h3>Basic example:</h3>
+  <h2>Basic</h2>
 </Content>
 
 <Code>{basic}</Code>
@@ -56,7 +57,7 @@
 </Content>
 
 <Content>
-  <h3>Validation example:</h3>
+  <h2>Validation</h2>
 </Content>
 
 <Code>{validation}</Code>
@@ -70,4 +71,23 @@
   And we are checking whether value is empty string and if it is, then we return
   a string which will be our error message for this validation. For now we don't
   display the error.
+</Content>
+
+<Content>
+  <h2>Displaying Error Message</h2>
+</Content>
+
+<Code>{errorMessage}</Code>
+
+<Content hasMargin>
+  First we need to create our form context, by importing it from our library.
+  And then to wrap it around our form, and eventually passing down all our
+  <b>useForm</b>
+  methods using spread. The library provides a basic
+  <b>ErrorMessage</b>
+  component, which will display the error.
+  <br />
+  All you need to do is to give a name prop of the input you want to display
+  <b>ErrorMessage</b>
+  to.
 </Content>

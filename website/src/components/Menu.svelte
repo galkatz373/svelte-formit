@@ -1,6 +1,6 @@
 <script>
   import { url, isActive } from "@sveltech/routify";
-  export let isMobile;
+  export let isMobile = false;
 </script>
 
 <style lang="scss">
