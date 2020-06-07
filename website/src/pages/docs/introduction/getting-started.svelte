@@ -1,4 +1,9 @@
 <script>
+  import {
+    basic,
+    validation,
+  } from "../../../codes/introduction/getting-started";
+
   import Title from "../../../components/Title.svelte";
   import Code from "../../../components/Code.svelte";
   import Content from "../../../components/Content.svelte";
@@ -13,7 +18,7 @@
 
 <Content>To install svelte-formit:</Content>
 
-<Code>npm install svelte-formit</Code>
+<Code language="bash">{`npm install svelte-formit`}</Code>
 
 <Content hasMargin>
   First we decalre the hook(function)
@@ -37,17 +42,8 @@
 <Content>
   <h3>Basic example:</h3>
 </Content>
-<Prism>{`npm install svelte-formit`}</Prism>
-<iframe
-  src="https://codesandbox.io/embed/basic-x7fpe?fontsize=14&hidenavigation=1&theme=dark"
-  style="width:100%;margin-top:1rem; height:500px; border:0; border-radius: 4px;
-  overflow:hidden;"
-  title="basic"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media;
-  geolocation; gyroscope; hid; microphone; midi; payment; usb; vr;
-  xr-spatial-tracking"
-  sandbox="allow-autoplay allow-forms allow-modals allow-popups
-  allow-presentation allow-same-origin allow-scripts" />
+
+<Code>{basic}</Code>
 
 <Content hasMargin>
   You could pass
@@ -63,16 +59,7 @@
   <h3>Validation example:</h3>
 </Content>
 
-<iframe
-  src="https://codesandbox.io/embed/validation-mlkcf?fontsize=14&hidenavigation=1&theme=dark"
-  style="width:100%;margin-top:1rem; height:500px; border:0; border-radius: 4px;
-  overflow:hidden;"
-  title="validation"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media;
-  geolocation; gyroscope; hid; microphone; midi; payment; usb; vr;
-  xr-spatial-tracking"
-  sandbox="allow-autoplay allow-forms allow-modals allow-popups
-  allow-presentation allow-same-origin allow-scripts" />
+<Code>{validation}</Code>
 
 <Content hasMargin>
   In this example we add validation only for our first input.

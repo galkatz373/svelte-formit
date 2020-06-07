@@ -1,4 +1,10 @@
-<style lang="scss">
+<script>
+  import Prism from "svelte-prism";
+
+  export let language = "svelte";
+</script>
+
+<!-- <style lang="scss">
   .code {
     display: flex;
     width: fit-content;
@@ -16,8 +22,12 @@
       padding: 0.5rem;
     }
   }
-</style>
+</style> -->
 
-<div class="code">
+<!-- <div class="code">
   <slot />
-</div>
+</div> -->
+
+<Prism {language}>
+  <slot />
+</Prism>

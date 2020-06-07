@@ -1,6 +1,11 @@
-import HMR from  '@sveltech/routify/hmr'
-import App from './App.svelte';
+import HMR from "@sveltech/routify/hmr"
+import App from "./App.svelte"
+import { global } from "svelte-prism"
+import "prismjs/plugins/normalize-whitespace/prism-normalize-whitespace"
+import "prismjs"
+import "prismjs/components/prism-bash"
+global.transform = (code) => Prism.plugins.NormalizeWhitespace.normalize(code)
 
-const app = HMR(App, { target: document.body }, 'routify-app')
+const app = HMR(App, { target: document.body }, "routify-app")
 
-export default app;
+export default app

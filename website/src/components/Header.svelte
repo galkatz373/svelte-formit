@@ -16,7 +16,7 @@
     color: #1c1e21;
     padding: 0.5rem 1rem;
     display: flex;
-    z-index: 1;
+    z-index: 2;
     border: 1px solid lightgray;
 
     .title {
