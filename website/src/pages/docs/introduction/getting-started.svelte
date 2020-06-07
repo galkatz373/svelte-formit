@@ -47,3 +47,39 @@
   xr-spatial-tracking"
   sandbox="allow-autoplay allow-forms allow-modals allow-popups
   allow-presentation allow-same-origin allow-scripts" />
+
+<Content hasMargin>
+  You could pass
+  <b>register</b>
+  an object to add a validation. The key of each object is the name of the
+  validation, and the value is the validation function.
+  <br />
+  If the validation doesn't pass, then the form won't submit when you click on
+  the submit button.
+</Content>
+
+<Content>
+  <h3>Validation example:</h3>
+</Content>
+
+<iframe
+  src="https://codesandbox.io/embed/validation-mlkcf?fontsize=14&hidenavigation=1&theme=dark"
+  style="width:100%;margin-top:1rem; height:500px; border:0; border-radius: 4px;
+  overflow:hidden;"
+  title="validation"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media;
+  geolocation; gyroscope; hid; microphone; midi; payment; usb; vr;
+  xr-spatial-tracking"
+  sandbox="allow-autoplay allow-forms allow-modals allow-popups
+  allow-presentation allow-same-origin allow-scripts" />
+
+<Content hasMargin>
+  In this example we add validation only for our first input.
+  <br />
+  We call the validation "required", but we could have called it whatever we
+  want.
+  <br />
+  And we are checking whether value is empty string and if it is, then we return
+  a string which will be our error message for this validation. For now we don't
+  display the error.
+</Content>
