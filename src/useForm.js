@@ -1,5 +1,6 @@
 import { writable, get, derived } from "svelte/store"
 import { isRadioButton, flatten, unflatten, isSelectMulti, findInputOrSelect, isCheckbox, isFileInput } from "./util"
+import { tick } from "svelte"
 
 export const key = {}
 
@@ -285,6 +286,8 @@ export const useForm = ({ modes } = {} || undefined) => {
     values.update((n) => ({ ...n, [fieldName]: value }))
   }
 
+  const setError = (fieldName, errorMessage) => errors.set((n) => ({ ...n, [fieldName]: errorMessage }))
+
   const getValues = {
     subscribe(run) {
       return derived(
@@ -335,6 +338,8 @@ export const useForm = ({ modes } = {} || undefined) => {
 
     isSubmitting.set(true)
 
+    await tick()
+
     get(isValid) && (await onSubmit(unflatten(get(values))))
     isSubmitting.set(false)
   }
@@ -348,6 +353,7 @@ export const useForm = ({ modes } = {} || undefined) => {
     handleSubmit,
     isSubmitting,
     register,
+    setError,
     triggerValidation,
     isValid,
     errors,
